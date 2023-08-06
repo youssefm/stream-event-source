@@ -18,19 +18,19 @@ export type StreamEventSourceInit = Omit<FetchEventSourceInit, "body"> &
 
 type EventSourceQueueItem =
   | {
-      event?: EventSourceMessage;
+      event: EventSourceMessage;
       done?: undefined;
       error?: undefined;
     }
   | {
       event?: undefined;
-      done?: true;
+      done: true;
       error?: undefined;
     }
   | {
       event?: undefined;
       done?: undefined;
-      error?: Error;
+      error: Error;
     };
 
 const JSON_MEDIA_TYPE = "application/json";
