@@ -61,6 +61,17 @@ export async function* streamEventSource(
   if (!fetchInit.openWhenHidden) {
     fetchInit.openWhenHidden = true;
   }
+  if (!fetchInit.onopen) {
+    fetchInit.onopen = async (response: Response) => {
+      if (!response.ok) {
+        throw new Error(
+          `Error opening event source to ${url}: ${
+            response.status
+          } - ${await response.text()}`
+        );
+      }
+    };
+  }
   if (!fetchInit.onerror) {
     fetchInit.onerror = (error) => {
       throw error;
@@ -69,16 +80,6 @@ export async function* streamEventSource(
 
   fetchEventSource(url, {
     ...fetchInit,
-    async onopen(response) {
-      await fetchInit.onopen?.(response);
-      if (!response.ok) {
-        throw new Error(
-          `Error opening event source to ${url}: ${
-            response.status
-          } - ${await response.text()}`
-        );
-      }
-    },
     onmessage: (event: EventSourceMessage) => {
       fetchInit.onmessage?.(event);
       resolve({ event });
