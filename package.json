@@ -1,6 +1,6 @@
 {
   "name": "stream-event-source",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A simple API for consuming server-sent events (SSE) using an AsyncGenerator",
   "main": "index.js",
   "scripts": {
@@ -16,5 +16,11 @@
     "AsyncGenerator"
   ],
   "author": "Youssef Moussaoui",
-  "homepage": "https://github.com/youssefm/stream-event-source#readme"
+  "homepage": "https://github.com/youssefm/stream-event-source#readme",
+  "dependencies": {
+    "@fortaine/fetch-event-source": "^3.0.6"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
 }
